@@ -1,5 +1,5 @@
 #include <iostream>
-#include <cstdlib>
+//#include <cstdlib>
 #include <ctime>
 #include <windows.h>
 using namespace std;
@@ -96,8 +96,8 @@ int main()
   char t;
   wygeneruj(plansza);
   wyswietl(plansza);
-  cout<<endl<<endl<<"wcisnij 0 zeby rozpoczac gre z wygenerowana plansza lub dowolny klawisz zeby wylosowac inna"<<endl;
-  cin>>t;
+  cout<<endl<<endl<<"wcisnij 0 zeby rozpoczac gre z wygenerowana plansza lub enter zeby wylosowac inna"<<endl;
+  t=getchar();
   if (t=='0')
     {
       cout<<"START"<<endl;
