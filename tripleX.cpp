@@ -3,39 +3,39 @@
 
 using namespace std;
 
-void Game(int& difficulty)
+void Game(int& Difficulty)
 {
-	int code[3];
-	int answer[3];
-	int count = 3;
+	int Code[3];
+	int Answer[3];
+	int Count = 3;
 	char x;
-	int sum=0;
-	int sum2 = 0;
-	int product = 0;
+	int CodeSum=0;
+	int AnswerSum = 0;
+	int CodeProduct = 0;
 
-	for (int i = 0; i < 3; i++)		code[i] = (rand() % 5 + difficulty);
-	for (int i = 0; i < 3; i++)		sum += code[i];
-	product = code[0] * code[1] * code[2];
+	for (int i = 0; i < 3; i++)		Code[i] = (rand() % 5 + Difficulty);
+	for (int i = 0; i < 3; i++)		CodeSum += Code[i];
+	CodeProduct = Code[0] * Code[1] * Code[2];
 
-	cout << "LEVEL " << difficulty << endl;
-	cout << "SUM OF NUMBERS = " << sum << "     PRODUCT OF NUMBERS = " << product << endl;
+	cout << "LEVEL " << Difficulty << endl;
+	cout << "SUM OF NUMBERS = " << CodeSum << "     PRODUCT OF NUMBERS = " << CodeProduct << endl;
 	do {
-		for (int i = 0; i < 3; i++) cin >> answer[i];
+		for (int i = 0; i < 3; i++) cin >> Answer[i];
 		cin >> x;
 		if (x == 'x' || x == 'X')
 		{
-			if (sum == answer[0] + answer[1] + answer[2] && product == answer[0] * answer[1] * answer[2])
+			if (CodeSum == Answer[0] + Answer[1] + Answer[2] && CodeProduct == Answer[0] * Answer[1] * Answer[2])
 			{
 				for (int i = 0; i < 3; i++)
 					for (int j = 0; j < 3; j++)
 					{
-						if (code[i] == answer[j]) code[i] = answer[j] = 0;
+						if (Code[i] == Answer[j]) Code[i] = Answer[j] = 0;
 					}
-				for (int i = 0; i < 3; i++)		sum2 += code[i];
-				if (sum2 == 0)
+				for (int i = 0; i < 3; i++)		AnswerSum += Answer[i];
+				if (AnswerSum == 0)
 				{
 					cout << "Good job. You're going up!" << endl;
-					count = -1;
+					Count = -1;
 				}
 				else
 				{
@@ -47,39 +47,45 @@ void Game(int& difficulty)
 				cout << "You are mistaken." << endl;
 				cin.clear();
 				cin.ignore(1000, '\n');
-				count--;
+				Count--;
 			}
 		}
 		else
 		{
 			cout << "You failed to put correct code." << endl;
-			count--;
+			cin.clear();
+			cin.ignore(1000, '\n');
+			Count--;
 		}
-	} while (count > 0);
-	if (count == 0)
+	} while (Count > 0);
+	if (Count == 0)
 	{
-		difficulty = 11;
+		Difficulty = 11;
 		cout << "Dragon woke up and ate you. Game over.";
 	}
 }
 
-int main()
+void Instructions()
 {
-	srand(time(NULL));
 	cout << "You're trying to reach princess Victoria locked in high tower guarded by a dragon." << endl;
 	cout << "Every floor has a door which open only if you enter code made up from three numbers (order is not important)." << endl;
 	cout << "You are given clues to guess right, but remember you have only 3 attempts." << endl;
-	cout << "Each floor is harder to get to.  Write your answer and confirm with x (ex. 3 5 5 x). Good luck and dont wake the dragon!" <<endl<<endl;
+	cout << "Each floor is harder to get to.  Write your answer and confirm with x (ex. 3 5 5 x). Good luck and dont wake the dragon!" << endl << endl;
+}
+int main()
+{
+	srand(time(NULL));
+	
+	int Diff = 1;
+	const int MaxDiff = 10;
+	Instructions();
 
-	int diff = 1;
-	int maxdiff = 10;
-
-	while (diff <= maxdiff)
+	while (Diff <= MaxDiff)
 	{
-		Game(diff);
+		Game(Diff);
 		cin.clear();
 		cin.ignore(1000, '\n');
-		diff++;
+		Diff++;
 	}
 	return 0;
 }
